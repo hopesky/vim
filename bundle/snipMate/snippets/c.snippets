@@ -7,7 +7,7 @@ snippet main
 	}
 # string
 snippet str
-	char str${1:TempBuf}[${2:BUFSIZ} + 1] = "\0";
+	char ${1:TempBuf}[${2:BUFSIZ} + 1] = "\0";
 	${3}
 # debug
 snippet debug
@@ -16,7 +16,6 @@ snippet debug
 # #include <...>
 snippet inc
 	#include <${1:stdio}.h>
-	${2}
 # #include "..."
 snippet Inc
 	#include "${1:`Filename("$1.h")`}"
