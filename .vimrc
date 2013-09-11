@@ -5,6 +5,7 @@ set tags=tags
 set smartcase
 set smartindent
 set smarttab
+set foldmethod=marker
 
 if has("autocmd")
 	"记住上次光标所在位置
@@ -29,10 +30,5 @@ map <F2> :TlistToggle<cr>
 "F3为打开目录列表
 map <F3> :NERDTreeToggle<cr><cr> 
 
-"命令模式下，回车为折叠{}间的代码
-nmap <cr> 0/{<cr>zf%k^
-
-"命令模式下，Tab键为打开折叠处的代码（注：要将光标移到折叠处上一行，再按Tab键
-nmap <tab> 0/{<cr>zOk^
 
 
