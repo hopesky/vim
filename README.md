@@ -1,151 +1,123 @@
-**neocomplcache**
-=================
+"属于我自己的vim配置文件
+"vimrc里有详细的注释，这样自己就不会忘记里。。。
+"下面贴出来吧，这样会好看些
 
-Description
------------
+"设置一个tab显示出来时几个空格
+set tabstop=4
 
-neocomplcache is the abbreviation of "neo-completion with cache". It
-provides keyword completion system by maintaining a cache of keywords in the
-current buffer. neocomplcache could be customized easily and has a lot more
-features than the Vim's standard completion feature.
+"设置自动缩进所使用的空白长度
+set shiftwidth=4
 
-If you use Vim 7.3.885 or above with if\_lua feature, you should use
-neocomplete.  It is faster than neocomplcache.
+"显示行号
+set number
 
-https://github.com/Shougo/neocomplete.vim
+"设置函数、宏等标签所用到tags文件名
+"（顺便说下，Ctrl-[是跑到函数、宏等定义处，Ctrl-t返回）
+"如果提示找不到标签或者你要更新标签可以在linux shell下执行命令：
+" ctags -Rf .tags
+" 如果启动vim时提示ctags有关的问题，那么请安装最新版本的ctags
+set tags=.tags
 
-Installation
-============
+"设置代码折叠方式为标记式折叠（这样下次打开时该处也是折叠的）
+"折叠方法：
+"折叠一对{}或[]或（）或/**/里的内容：将光标移到起始或末尾处，按zf%进行折叠
+"zo：展开当前折叠
+"zO：展开当前折叠（包括嵌套折叠）
+"zr：展开所有折叠
+"zR：展开所有折叠（包括嵌套折叠）
+"zc：收起当前折叠
+"zC：收起当前折叠（包括嵌套折叠）
+"zd：删除当前折叠
+"zD：删除当前折叠（包括嵌套折叠）
+"zE：删除所有折叠
+set foldmethod=marker
 
-* Extract the file and put files in your Vim directory
-   (usually ~/.vim/ or Program Files/Vim/vimfiles on Windows).
-* Execute `|:NeoComplCacheEnable|` command or
-`let g:neocomplcache_enable_at_startup = 1`
-in your `.vimrc`. Not in `.gvimrc`(`_gvimrc`)!
+"设置语法高亮
+syntax on
 
-Caution
--------
+"设置配色方案
+colo delek
 
-Because all variable names were changed in neocomplcache Ver.5, it is not
-backwards compatible. If you want to upgrade, you should use the following
-script from Mr.thinca.
+"设置搜索高亮(要取消搜索的高亮可以用“:noh”）(即nohighlight)
+set hlsearch
+hi Search cterm=none ctermbg=Magenta
 
-http://gist.github.com/422503
+"设置动态搜索高亮（即搜索时自动跳转）
+set incsearch
 
-Snippets feature(snippets\_complete source) was split from Ver.7.
-If you used it, please install neosnippet source manually.
+"设置高亮当前行，如果觉得不好看，可以注释掉
+set cursorline
+hi cursorline cterm=none ctermbg=black
 
-https://github.com/Shougo/neosnippet
+"F2为打开当前C文件的函数列表
+map <F2> :TlistToggle<cr>
 
-Screen shots
-============
+"F3为打开目录列表
+let NERDTreeWinPos=1
+map <F3> :NERDTreeToggle<cr><cr>
 
-Original filename completion.
------------
-![Original filename completion.](http://1.bp.blogspot.com/_ci2yBnqzJgM/TD1O5_bOQ2I/AAAAAAAAADE/vHf9Xg_mrTI/s1600/filename_complete.png)
+"设置自动开启补全（如果注释掉，那么只有按Ctrl-n或Ctrl-p才能补全）
+let g:neocomplcache_enable_at_startup=1
 
-Omni completion.
-----------------
-![Omni completion.](http://2.bp.blogspot.com/_ci2yBnqzJgM/TD1PTolkTBI/AAAAAAAAADU/knJ3eniuHWI/s1600/omni_complete.png)
+"Bundle管理插件（可用它来装各种插件）
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
 
-Completion with vimshell(http://github.com/Shougo/vimshell).
-------------------------------------------------------------
-![Completion with vimshell(http://github.com/Shougo/vimshell).](http://1.bp.blogspot.com/_ci2yBnqzJgM/TD1PLfdQrwI/AAAAAAAAADM/2pSFRTHwYOY/s1600/neocomplcache_with_vimshell.png)
+"自动代码补全插件（如输入main，再按tab键，那么会补全一个main函数)
+"可通过设置~/.vim/bundle/snipMate/snippets/里的文件来配置补全
+Bundle 'snipMate'
 
-Vim completion
-------------------------------------------------------------
-![Vim completion.](http://1.bp.blogspot.com/_ci2yBnqzJgM/TD1PfKTlwnI/AAAAAAAAADs/nOGWTRLuae8/s1600/vim_complete.png)
 
-Setting examples
+"编辑模式下可以支持emacs的上下左右和删除单个字符快捷键
+"(<C-n>和<C-p>由于是补全的快捷键,所以上和下改为<C-k>和<C-j>
+imap <C-b> <Left>
+imap <C-j> <Down>
+imap <C-k> <Up>
+imap <C-f> <Right>
+imap <C-a> <Home>
+imap <C-e> <End>
+imap <C-d> <Del>
+imap <C-i> <Esc>
 
-```vim
-"Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
-" Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
-" Use neocomplcache.
-let g:neocomplcache_enable_at_startup = 1
-" Use smartcase.
-let g:neocomplcache_enable_smart_case = 1
-" Set minimum syntax keyword length.
-let g:neocomplcache_min_syntax_length = 3
-let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
-
-" Enable heavy features.
-" Use camel case completion.
-"let g:neocomplcache_enable_camel_case_completion = 1
-" Use underbar completion.
-"let g:neocomplcache_enable_underbar_completion = 1
-
-" Define dictionary.
-let g:neocomplcache_dictionary_filetype_lists = {
-    \ 'default' : '',
-    \ 'vimshell' : $HOME.'/.vimshell_hist',
-    \ 'scheme' : $HOME.'/.gosh_completions'
-        \ }
-
-" Define keyword.
-if !exists('g:neocomplcache_keyword_patterns')
-    let g:neocomplcache_keyword_patterns = {}
-endif
-let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
-
-" Plugin key-mappings.
-inoremap <expr><C-g>     neocomplcache#undo_completion()
-inoremap <expr><C-l>     neocomplcache#complete_common_string()
-
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  return neocomplcache#smart_close_popup() . "\<CR>"
-  " For no inserting <CR> key.
-  "return pumvisible() ? neocomplcache#close_popup() : "\<CR>"
+"在写回文件前将下列文件后缀中的tab替换为空格
+function RemoveWhitespaceOfC()
+    if &ft =~ "erl"  ||
+	 \ &ft =~ "lisp" ||
+	 \ &ft =~ "c"    ||
+	 \ &ft =~ "h"    ||
+	 \ &ft =~ "cpp"  ||
+	 \ &ft =~ "sh"
+        set et
+        retab
+    endif
 endfunction
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplcache#close_popup()
-inoremap <expr><C-e>  neocomplcache#cancel_popup()
-" Close popup by <Space>.
-"inoremap <expr><Space> pumvisible() ? neocomplcache#close_popup() : "\<Space>"
+autocmd BufWritePre * call RemoveWhitespaceOfC()
 
-" For cursor moving in insert mode(Not recommended)
-"inoremap <expr><Left>  neocomplcache#close_popup() . "\<Left>"
-"inoremap <expr><Right> neocomplcache#close_popup() . "\<Right>"
-"inoremap <expr><Up>    neocomplcache#close_popup() . "\<Up>"
-"inoremap <expr><Down>  neocomplcache#close_popup() . "\<Down>"
-" Or set this.
-"let g:neocomplcache_enable_cursor_hold_i = 1
-" Or set this.
-"let g:neocomplcache_enable_insert_char_pre = 1
+"在写回文件前自动去除尾部空白符(不包括后缀为diff的文件)
+function RemoveTrailingWhitespace()
+    if &ft != "diff"
+        let b:curcol = col(".")
+        let b:curline = line(".")
+        silent! %s/\s\+$//
+        silent! %s/\(\s*\n\)\+\%$//
+        call cursor(b:curline, b:curcol)
+    endif
+endfunction
+autocmd BufWritePre * call RemoveTrailingWhitespace()
 
-" AutoComplPop like behavior.
-"let g:neocomplcache_enable_auto_select = 1
+"显示尾部空白符
+highlight WhitespaceEOL ctermbg=red guibg=red
+match WhitespaceEOL /\s\+$/
 
-" Shell like behavior(not recommended).
-"set completeopt+=longest
-"let g:neocomplcache_enable_auto_select = 1
-"let g:neocomplcache_disable_auto_complete = 1
-"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
-
-" Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-" Enable heavy omni completion.
-if !exists('g:neocomplcache_omni_patterns')
-  let g:neocomplcache_omni_patterns = {}
-endif
-let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-let g:neocomplcache_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-
-" For perlomni.vim setting.
-" https://github.com/c9s/perlomni.vim
-let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-```
+"记住上次光标所在位置
+function RecoverLastPosition()
+    if line("'\"") > 0
+        if line("'\"") <= line("$")
+            execute "normal '\""
+        else
+            execute "normal $"
+        endif
+        execute "normal zz"
+    endif
+endfunction
+autocmd BufReadPost * call RecoverLastPosition()
