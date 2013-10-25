@@ -7,13 +7,13 @@ snippet main
 	}
 # string
 snippet str
-	char ${1:TempBuf}[${2:BUFSIZ} + 1] = "\0";${3}
+	char ${1:temp}[${2:BUFSIZ + 1}] = "\0";${3}
 # debug
 snippet debug
 	printf("--[%s:%d]--[${1:%s}]--\n", __FILE__, __LINE__, "${2:Debug}");${3}
 # #include <...>
 snippet inc
-	#include <${1:stdio}.h>${3}
+	#include <${1:stdio}.h>${2}
 # #include "..."
 snippet Inc
 	#include "${1:`Filename("$1.h")`}"${2}
