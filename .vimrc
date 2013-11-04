@@ -1,3 +1,6 @@
+"换行时自动对齐
+set smartindent
+
 "设置一个tab显示出来时几个空格
 set tabstop=4
 
@@ -55,6 +58,9 @@ map <F3> :NERDTreeToggle<cr><cr>
 "设置自动开启补全（如果注释掉，那么只有按Ctrl-n或Ctrl-p才能补全）
 let g:neocomplcache_enable_at_startup=1
 
+"设置c文件语法检查
+execute pathogen#infect()
+
 "Bundle管理插件（可用它来装各种插件）
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
@@ -62,7 +68,6 @@ call vundle#rc()
 "自动代码补全插件（如输入main，再按tab键，那么会补全一个main函数)
 "可通过设置~/.vim/bundle/snipMate/snippets/里的文件来配置补全
 Bundle 'snipMate'
-
 
 "编辑模式下可以支持emacs的上下左右和删除单个字符快捷键
 "(<C-n>和<C-p>由于是补全的快捷键,所以上和下改为<C-k>和<C-j>
