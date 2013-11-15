@@ -1,5 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
-let g:netrw_dirhist_1='/home/leptune/.gconf'
-let g:netrw_dirhist_2='/home/leptune/source/ufs/c'
-let g:netrw_dirhist_3='/home/leptune/.vim'
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/lib'
+let g:netrw_dirhist_2='/etc/mysql/conf.d'
+let g:netrw_dirhist_3='/home/leptune/.vim/autoload/unite'
+let g:netrw_dirhist_4='/home/leptune/.vim/autoload/vital'
+let g:netrw_dirhist_5='/media/leptune/5ubuntu/source/ulog/client/.ulog.suffix'
+let g:netrw_dirhist_6='/media/leptune/5ubuntu/source/ulog/client/test'

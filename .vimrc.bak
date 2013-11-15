@@ -1,6 +1,6 @@
-"换行时自动对齐
-set smartindent
+execute pathogen#infect()
 
+set smartindent
 "设置一个tab显示出来时几个空格
 set tabstop=4
 
@@ -39,14 +39,14 @@ colo delek
 
 "设置搜索高亮(要取消搜索的高亮可以用“:noh”）(即nohighlight)
 set hlsearch
-"hi Search cterm=none ctermbg=Magenta
+hi Search cterm=none ctermbg=Magenta
 
 "设置动态搜索高亮（即搜索时自动跳转）
 set incsearch
 
 "设置高亮当前行，如果觉得不好看，可以注释掉
 set cursorline
-hi cursorline cterm=none ctermbg=black
+hi cursorline cterm=none ctermbg=white
 
 "F2为打开当前C文件的函数列表
 map <F2> :TlistToggle<cr>
@@ -66,9 +66,9 @@ call vundle#rc()
 "可通过设置~/.vim/bundle/snipMate/snippets/里的文件来配置补全
 Bundle 'snipMate'
 
+
 "编辑模式下可以支持emacs的上下左右和删除单个字符快捷键
 "(<C-n>和<C-p>由于是补全的快捷键,所以上和下改为<C-k>和<C-j>
-"注意，如果装了linux版本的qq，那么运行qq时用esc退出补全模式将失效，所以可用<C-c>来代替esc
 imap <C-b> <Left>
 imap <C-j> <Down>
 imap <C-k> <Up>
@@ -85,11 +85,9 @@ function RemoveWhitespaceOfC()
 	 \ &ft =~ "c"    ||
 	 \ &ft =~ "h"    ||
 	 \ &ft =~ "cpp"  ||
-	 \ &ft =~ "sh"   ||
-	 \ &ft =~ "sql"
+	 \ &ft =~ "sh"
         set et
         retab
-		set noet
     endif
 endfunction
 autocmd BufWritePre * call RemoveWhitespaceOfC()
@@ -107,14 +105,14 @@ endfunction
 autocmd BufWritePre * call RemoveTrailingWhitespace()
 
 "显示尾部空白符
-highlight WhitespaceEOL ctermbg=red guibg=red
+highlight WhitespaceEOL ctermbg=red guibg=white
 match WhitespaceEOL /\s\+$/
 
 "记住上次光标所在位置
 function RecoverLastPosition()
     if line("'\"") > 0
         if line("'\"") <= line("$")
-            execute "normal! g`\""
+            execute "normal '\""
         else
             execute "normal $"
         endif
@@ -122,12 +120,3 @@ function RecoverLastPosition()
     endif
 endfunction
 autocmd BufReadPost * call RecoverLastPosition()
-
-"设置c文件语法检查
-execute pathogen#infect()
-
-set showcmd		" display incomplete commands
-
-" CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
-" so that you can undo CTRL-U after inserting a line break.
-inoremap <C-U> <C-G>u<C-U>
