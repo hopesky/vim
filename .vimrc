@@ -54,17 +54,6 @@ map <F2> :TlistToggle<cr>
 let NERDTreeWinPos=1
 map <F3> :NERDTreeToggle<cr><cr>
 
-", 横向增大窗口
-nmap , :vertical resize -1<cr>
-". 横向减少窗口
-nmap . :vertical resize +1<cr>
-"<c-h> 切换到左边的窗口
-nmap <c-h> <c-w>h<c-w><Bar>
-"<c-l> 切换到右边的窗口
-nmap <c-l> <c-w>l<c-w><Bar>
-"<c-n> 切换到下一个窗口
-nmap <c-n> <c-w>w
-
 "设置自动开启补全（如果注释掉，那么只有按Ctrl-n或Ctrl-p才能补全）
 let g:neocomplcache_enable_at_startup=1
 
@@ -168,3 +157,14 @@ if has("cscope")
 	nmap <C-k>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 	nmap <C-k>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 endif
+
+", 横向增大窗口
+nmap < :vertical resize -1<cr>
+". 横向减少窗口
+nmap > :vertical resize +1<cr>
+"<c-h> 切换到左边的窗口
+nmap <c-h> <c-w>h<c-w><Bar>
+"<c-l> 切换到右边的窗口
+nmap <c-l> <c-w>l<c-w><Bar>
+"<c-n> 切换到下一个窗口
+nmap <c-n> <c-w>w

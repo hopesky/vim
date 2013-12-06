@@ -1,4 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =2
+let g:netrw_dirhist_cnt =3
 let g:netrw_dirhist_1='/media/leptune/5ubuntu/source/app_platform'
 let g:netrw_dirhist_2='/'
+let g:netrw_dirhist_3='/usr/lib/x86_64-linux-gnu/espeak-data/voices'
