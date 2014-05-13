@@ -8,6 +8,7 @@ Bundle 'taglist.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'godlygeek/tabular'
 Bundle 'Shougo/neocomplcache.vim'
+Bundle 'fholgado/minibufexpl.vim'
 filetype plugin indent on " recover filetype when vundle startup finished
 
 """"""""''"""""neocomplcache"""""""""""""""""""
@@ -118,7 +119,7 @@ let NERDTreeWinPos=1
 let NERDTreeQuitOnOpen = 1
 let NERDChristmasTree = 1
 let NERDTreeAutoDeleteBuffer = 1
-map <F3> :NERDTreeToggle<cr>
+map <Tab> :NERDTreeToggle<cr>
 " open a NERDTree automatically when vim starts up if no files were specified
 autocmd vimenter * if !argc() | NERDTree | endif
 " close vim if the only window left open is a NERDTree
