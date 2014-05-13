@@ -115,6 +115,9 @@ map <F2> :TlistToggle<cr>
 
 """"""""NerdTree"""""""""""""""
 let NERDTreeWinPos=1
+let NERDTreeQuitOnOpen = 1
+let NERDChristmasTree = 1
+let NERDTreeAutoDeleteBuffer = 1
 map <F3> :NERDTreeToggle<cr>
 " open a NERDTree automatically when vim starts up if no files were specified
 autocmd vimenter * if !argc() | NERDTree | endif
