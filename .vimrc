@@ -20,8 +20,8 @@ filetype plugin indent on " recover filetype when vundle startup finished
 "If you use Vim 7.3.885 or above with if_lua feature, you should use
 "neocomplete. It is faster than neocomplcache.
 "Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
-" enable AutoComplPop.
-let g:acp_enableAtStartup = 1
+" disable AutoComplPop.
+let g:acp_enableAtStartup = 0
 " Use neocomplcache.
 let g:neocomplcache_enable_at_startup = 1
 " Use smartcase.
@@ -101,10 +101,10 @@ let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 " https://github.com/c9s/perlomni.vim
 let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
-"""""""" erlang auto compile plugin""""""""""
-let g:erlangHighlightBif = 1
-let g:erlangCompletionGrep='zgrep'
-let g:erlangManSuffix='erl\.gz'
+""""""""" erlang auto compile plugin""""""""""
+"let g:erlangHighlightBif = 1
+"let g:erlangCompletionGrep='zgrep'
+"let g:erlangManSuffix='erl\.gz'
 
 """"""""""""snipMate""""""""""""""""
 " e.g: input main, and then press Tab, it will complete a main function
@@ -252,11 +252,12 @@ set number
 set showcmd
 set ruler
 set title
-set autoindent
-set smartcase
-set nowrap
+"set autoindent
+"set nowrap
 set wildmenu
 set nocp
+set smartindent
+set smartcase
 syntax on
 
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
@@ -271,3 +272,5 @@ imap <C-a> <Home>
 imap <C-e> <End>
 imap <C-d> <Del>
 imap <C-i> <Esc>
+
+colorscheme delek
