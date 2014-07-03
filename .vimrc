@@ -272,3 +272,5 @@ imap <C-a> <Home>
 imap <C-e> <End>
 imap <C-d> <Del>
 imap <C-i> <Esc>
+
+colorscheme delek
